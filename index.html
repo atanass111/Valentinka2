@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>За моето Шуши ❤️</title>
+    <style>
+        body { margin: 0; height: 100vh; display: flex; align-items: center; justify-content: center; background: #ffe4e1; font-family: sans-serif; overflow: hidden; text-align: center; }
+        .container { background: white; padding: 2rem; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); z-index: 10; width: 80%; }
+        h1 { color: #d63384; font-size: 1.5rem; }
+        .buttons { margin-top: 20px; display: flex; justify-content: center; gap: 20px; flex-direction: column; align-items: center; }
+        button { padding: 15px 30px; font-size: 1.2rem; border: none; border-radius: 10px; cursor: pointer; width: 100%; max-width: 200px; }
+        #yesBtn { background: #d63384; color: white; }
+        #noBtn { background: #6c757d; color: white; transition: 0.2s; }
+        .heart { position: absolute; color: #ffb6c1; animation: float 5s linear infinite; top: 100vh; pointer-events: none; }
+        @keyframes float { to { transform: translateY(-110vh) rotate(360deg); } }
+    </style>
+</head>
+<body>
+    <div class="container" id="mainBox">
+        <h1>Хей, Шуши! 🍣❤️</h1>
+        <p>Ще бъдеш ли моят Валентин?</p>
+        <div class="buttons">
+            <button id="yesBtn" onclick="celebrate()">ДА! 🥰</button>
+            <button id="noBtn" onmouseenter="moveBtn()" onclick="moveBtn()">Не 😢</button>
+        </div>
+    </div>
+    <script>
+        function moveBtn() {
+            const btn = document.getElementById('noBtn');
+            const x = Math.random() * (window.innerWidth - btn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - btn.offsetHeight);
+            btn.style.position = 'fixed';
+            btn.style.left = x + 'px';
+            btn.style.top = y + 'px';
+        }
+        function celebrate() {
+            document.getElementById('mainBox').innerHTML = "<h1>Обичам те, Шуши! 🥰</h1><p>Приготви се за изненада! 🥂✨</p>";
+            for(let i=0; i<50; i++) setTimeout(createHeart, i*100);
+        }
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+        setInterval(createHeart, 400);
+    </script>
+</body>
+</html>
